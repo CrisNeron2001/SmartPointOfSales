@@ -7,9 +7,13 @@ from django.views.decorators.csrf import csrf_exempt
 from core.models import Producto
 from .serializers import ProductoSerializer
 from rest_producto import serializers
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 @csrf_exempt
+@permission_classes([IsAuthenticated,])
 @api_view(['GET', 'POST'])
 def lista_producto(request):
     if request.method == 'GET':
@@ -25,6 +29,8 @@ def lista_producto(request):
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@csrf_exempt
+@permission_classes([IsAuthenticated,])
 @api_view(['GET', 'PUT', 'DELETE'])
 def detalle_producto(request, id_producto):
     try:

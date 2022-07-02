@@ -73,13 +73,13 @@ TEMPLATES = [
         },
     },
 ]
-
+"""
 REST_FRAMEWORK ={
     'DEFAULT_AUTHENTICATION_CLASES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
-
+"""
 WSGI_APPLICATION = 'SmartPointOfSales.wsgi.application'
 
 
